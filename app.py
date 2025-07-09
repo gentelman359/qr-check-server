@@ -43,8 +43,6 @@ def validate_qr(serial):
     date = request.args.get("date", "")
     hour = request.args.get("hour", "")
     minute = request.args.get("minute", "")
-    groom = request.args.get("groom", "")
-    bride = request.args.get("bride", "")
 
     # 필수 파라미터 체크
     if not (token and issue_time_str and date and hour and minute):
@@ -67,7 +65,7 @@ def validate_qr(serial):
         return error_html("❌ 토큰이 유효하지 않습니다.")
 
     # used_qr 파일명 생성
-    used_qr_filename = get_used_qr_filename(date, hour, minute, groom, bride)
+    used_qr_filename = get_used_qr_filename(date, hour, minute)
 
     # 이미 사용된 QR 체크
     used = load_used_qr(used_qr_filename)

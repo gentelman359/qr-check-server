@@ -1,5 +1,6 @@
 ﻿from flask import Flask, render_template_string, request
 from datetime import datetime, timedelta
+import pytz
 import json
 import os
 import re
@@ -8,7 +9,7 @@ app = Flask(__name__)
 
 CONFIG_FILE_PATH = "kiosk_config.json"
 QR_SECRET_KEY = "wedding_secret_key_1234"  # 🚨 반드시 kiosk와 동일하게 설정
-
+KST = pytz.timezone('Asia/Seoul')
 used_qr = set()
 
 def load_used_qr(filename):
@@ -38,7 +39,7 @@ def is_token_valid(serial, issue_time_str, token):
 def validate_qr(serial):
     token = request.args.get("t", "")
     issue_time_str = request.args.get("ts", "")
-
+    now = datetime.now(KST)  # 한국시간으로 현재 시간 받아오기
     # 예식 관련 파라미터
     date = request.args.get("date", "")
     hour = request.args.get("hour", "")

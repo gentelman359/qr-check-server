@@ -84,12 +84,9 @@ def success_html(message):
     return render_template_string(f"""
     <html><head><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
-        setTimeout(() => {{
-            window.location.replace("about:blank");
             setTimeout(() => {{
-                window.close();
-         
-        }}, 1500);
+        window.close();
+    }}, 2000);
     </script>
     <style>body {{ display: flex; justify-content: center; align-items: center; height: 100vh; font-size: 3em; font-weight: bold; }}</style>
     </head><body><div style="color:green;">{message}</div></body></html>
@@ -99,12 +96,9 @@ def error_html(message):
     return render_template_string(f"""
     <html><head><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
-        setTimeout(() => {{
-            window.location.replace("about:blank");
             setTimeout(() => {{
-                window.close();
-          
-        }}, 1500);
+        window.close();
+    }}, 2000);
     </script>
     <style>body {{ display: flex; justify-content: center; align-items: center; height: 100vh; font-size: 3em; font-weight: bold; }}</style>
     </head><body><div style="color:red;">{message}</div></body></html>

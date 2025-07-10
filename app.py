@@ -80,21 +80,32 @@ def validate_qr(serial):
     return success_html("✅ 입장 허용")
 
 # ✅ 공통 UI
+def success_html(message):
+    return render_template_string(f"""
+    <html><head><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        setTimeout(() => {{
+            window.open('', '_self');
+            window.close();
+        }}, 2000);
+    </script>
+    <style>body {{ display: flex; justify-content: center; align-items: center; height: 100vh; font-size: 3em; font-weight: bold; }}</style>
+    </head><body><div style="color:green;">{message}</div></body></html>
+    """)
+
 def error_html(message):
     return render_template_string(f"""
     <html><head><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>setTimeout(() => window.close(), 2000);</script>
+    <script>
+        setTimeout(() => {{
+            window.open('', '_self');
+            window.close();
+        }}, 2000);
+    </script>
     <style>body {{ display: flex; justify-content: center; align-items: center; height: 100vh; font-size: 3em; font-weight: bold; }}</style>
     </head><body><div style="color:red;">{message}</div></body></html>
     """)
 
-def success_html(message):
-    return render_template_string(f"""
-    <html><head><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>setTimeout(() => window.close(), 2000);</script>
-    <style>body {{ display: flex; justify-content: center; align-items: center; height: 100vh; font-size: 3em; font-weight: bold; }}</style>
-    </head><body><div style="color:green;">{message}</div></body></html>
-    """)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))

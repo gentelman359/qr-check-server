@@ -85,6 +85,7 @@ def success_html(message):
     <html><head><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
             setTimeout(() => {{
+            window.open('', '_self');
         window.close();
     }}, 2000);
     </script>
@@ -97,6 +98,7 @@ def error_html(message):
     <html><head><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
             setTimeout(() => {{
+            window.open('', '_self');
         window.close();
     }}, 2000);
     </script>

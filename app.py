@@ -52,6 +52,7 @@ def validate_qr(serial):
     # 예식 시간 파싱
     try:
         wedding_dt = datetime.strptime(f"{date} {hour}:{minute}", "%Y-%m-%d %H:%M")
+        wedding_dt = korea.localize(wedding_dt)
     except Exception as e:
         return error_html(f"❌ 예식 시간 파싱 실패: {e}")
 

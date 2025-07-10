@@ -23,8 +23,8 @@ def load_used_qr(filename):
 def save_used_qr(qr_set, filename):
     with open(filename, "w", encoding="utf-8") as f:
         json.dump(list(qr_set), f)
-def get_used_qr_filename(date, hour, minute, groom, bride):
-    key = f"{date}_{hour}_{minute}_{groom}_{bride}"
+def get_used_qr_filename(date, hour, minute):
+    key = f"{date}_{hour}_{minute}"
     safe_key = re.sub(r'[^a-zA-Z0-9_]', '_', key)
     return f"used_qr_{safe_key}.json"
 # ✅ 토큰 생성 / 검증

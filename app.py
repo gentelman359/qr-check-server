@@ -55,7 +55,6 @@ def validate_qr(serial):
     except Exception as e:
         return error_html(f"❌ 예식 시간 파싱 실패: {e}")
 
-    now = datetime.now()
 
     # 유효 시간 검사
     if not (wedding_dt - timedelta(hours=1) <= now <= wedding_dt + timedelta(hours=2)):

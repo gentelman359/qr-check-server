@@ -122,7 +122,7 @@ def error_html(message):
             setTimeout(() => {{
                 window.open('', '_self');
                 window.close();
-            }}, 2000);
+            }}, 3000);
         }};
     </script>
     <style>

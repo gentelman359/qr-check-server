@@ -6,7 +6,7 @@ import hashlib
 from flask import Flask, render_template_string, request
 from datetime import datetime, timedelta
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 CONFIG_FILE_PATH = "kiosk_config.json"
 QR_SECRET_KEY = "wedding_secret_key_1234"  # 🚨 반드시 kiosk와 동일하게 설정
 used_qr = set()

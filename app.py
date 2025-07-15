@@ -100,7 +100,7 @@ def success_html(message):
     </style>
     </head>
     <body>
-        <audio id="success-audio" src="/static/success.mp3" preload="auto" controls></audio>
+        <audio id="success-audio" src="/static/success.mp3" preload="auto" ></audio>
         <div style="color:green;">{message}</div>
     </body></html>
     """)
@@ -130,7 +130,7 @@ def error_html(message):
     </style>
     </head>
     <body>
-        <audio id="fail-audio" src="/static/fail.mp3" preload="auto" controls></audio>
+        <audio id="fail-audio" src="/static/fail.mp3" preload="auto" ></audio>
         <div style="color:green;">{message}</div>
     </body></html>
     """)

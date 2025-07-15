@@ -12,7 +12,6 @@ QR_SECRET_KEY = "wedding_secret_key_1234"  # 🚨 반드시 kiosk와 동일하�
 used_qr = set()
 korea = pytz.timezone("Asia/Seoul")
 
-
 def load_used_qr(filename):
     if not os.path.exists(filename):
         return set()
@@ -85,10 +84,12 @@ def success_html(message):
     <html><head><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
         window.onload = function() {{
+            const silent = document.getElementById("silent-audio");
+            silent?.play().catch(e => console.log("Silent play blocked"));
+
             const audio = document.getElementById("success-audio");
-            if (audio) {{
-                audio.play().catch(e => console.log("Autoplay blocked:", e));
-            }}
+            audio?.play().catch(e => console.log("Autoplay blocked:", e));
+
             setTimeout(() => {{
                 window.open('', '_self');
                 window.close();
@@ -100,10 +101,12 @@ def success_html(message):
     </style>
     </head>
     <body>
+        <audio id="silent-audio" src="/static/silent.mp3" preload="auto" autoplay muted></audio>
         <audio id="success-audio" src="/static/success.mp3" preload="auto"></audio>
         <div style="color:green;">{message}</div>
     </body></html>
     """)
+
 
 
 def error_html(message):
@@ -111,10 +114,12 @@ def error_html(message):
     <html><head><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
         window.onload = function() {{
+            const silent = document.getElementById("silent-audio");
+            silent?.play().catch(e => console.log("Silent play blocked"));
+
             const audio = document.getElementById("fail-audio");
-            if (audio) {{
-                audio.play().catch(e => console.log("Autoplay blocked:", e));
-            }}
+            audio?.play().catch(e => console.log("Autoplay blocked:", e));
+
             setTimeout(() => {{
                 window.open('', '_self');
                 window.close();
@@ -126,8 +131,9 @@ def error_html(message):
     </style>
     </head>
     <body>
+        <audio id="silent-audio" src="/static/silent.mp3" preload="auto" autoplay muted></audio>
         <audio id="fail-audio" src="/static/fail.mp3" preload="auto"></audio>
-        <div style="color:red;">{message}</div>
+        <div style="color:green;">{message}</div>
     </body></html>
     """)
 

@@ -84,12 +84,11 @@ def success_html(message):
     <html><head><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
         window.onload = function() {{
-            const silent = document.getElementById("silent-audio");
-            silent?.play().catch(e => console.log("Silent play blocked"));
-
             const audio = document.getElementById("success-audio");
-            audio?.play().catch(e => console.log("Autoplay blocked:", e));
-
+            audio?.load();
+            setTimeout(() => {{
+                audio?.play().catch(e => console.log("Autoplay blocked:", e));
+            }}, 100);
             setTimeout(() => {{
                 window.open('', '_self');
                 window.close();
@@ -101,11 +100,12 @@ def success_html(message):
     </style>
     </head>
     <body>
-        <audio id="silent-audio" src="/static/silent.mp3" preload="auto" autoplay muted></audio>
         <audio id="success-audio" src="/static/success.mp3" preload="auto"></audio>
         <div style="color:green;">{message}</div>
     </body></html>
     """)
+
+
 
 
 
@@ -114,12 +114,11 @@ def error_html(message):
     <html><head><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
         window.onload = function() {{
-            const silent = document.getElementById("silent-audio");
-            silent?.play().catch(e => console.log("Silent play blocked"));
-
             const audio = document.getElementById("fail-audio");
-            audio?.play().catch(e => console.log("Autoplay blocked:", e));
-
+            audio?.load();
+            setTimeout(() => {{
+                audio?.play().catch(e => console.log("Autoplay blocked:", e));
+            }}, 100);
             setTimeout(() => {{
                 window.open('', '_self');
                 window.close();
@@ -131,11 +130,11 @@ def error_html(message):
     </style>
     </head>
     <body>
-        <audio id="silent-audio" src="/static/silent.mp3" preload="auto" autoplay muted></audio>
         <audio id="fail-audio" src="/static/fail.mp3" preload="auto"></audio>
         <div style="color:green;">{message}</div>
     </body></html>
     """)
+
 
 
 

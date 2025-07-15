@@ -84,27 +84,53 @@ def success_html(message):
     return render_template_string(f"""
     <html><head><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
+        window.onload = function() {{
+            const audio = document.getElementById("success-audio");
+            if (audio) {{
+                audio.play().catch(e => console.log("Autoplay blocked:", e));
+            }}
             setTimeout(() => {{
-            window.open('', '_self');
-        window.close();
-    }}, 2000);
+                window.open('', '_self');
+                window.close();
+            }}, 2000);
+        }};
     </script>
-    <style>body {{ display: flex; justify-content: center; align-items: center; height: 100vh; font-size: 3em; font-weight: bold; }}</style>
-    </head><body><div style="color:green;">{message}</div></body></html>
+    <style>
+        body {{ display: flex; justify-content: center; align-items: center; height: 100vh; font-size: 3em; font-weight: bold; }}
+    </style>
+    </head>
+    <body>
+        <audio id="success-audio" src="/static/success.mp3" preload="auto"></audio>
+        <div style="color:green;">{message}</div>
+    </body></html>
     """)
+
 
 def error_html(message):
     return render_template_string(f"""
     <html><head><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
+        window.onload = function() {{
+            const audio = document.getElementById("fail-audio");
+            if (audio) {{
+                audio.play().catch(e => console.log("Autoplay blocked:", e));
+            }}
             setTimeout(() => {{
-            window.open('', '_self');
-        window.close();
-    }}, 2000);
+                window.open('', '_self');
+                window.close();
+            }}, 2000);
+        }};
     </script>
-    <style>body {{ display: flex; justify-content: center; align-items: center; height: 100vh; font-size: 3em; font-weight: bold; }}</style>
-    </head><body><div style="color:red;">{message}</div></body></html>
+    <style>
+        body {{ display: flex; justify-content: center; align-items: center; height: 100vh; font-size: 3em; font-weight: bold; }}
+    </style>
+    </head>
+    <body>
+        <audio id="fail-audio" src="/static/fail.mp3" preload="auto"></audio>
+        <div style="color:red;">{message}</div>
+    </body></html>
     """)
+
 
 
 if __name__ == "__main__":

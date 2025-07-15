@@ -81,59 +81,107 @@ def validate_qr(serial):
 # ✅ 공통 UI
 def success_html(message):
     return render_template_string(f"""
-    <html><head><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>
-        window.onload = function() {{
-            const audio = document.getElementById("success-audio");
-            audio?.load();
-            setTimeout(() => {{
-                audio?.play().catch(e => console.log("Autoplay blocked:", e));
-            }}, 100);
-            setTimeout(() => {{
-                window.open('', '_self');
-                window.close();
-            }}, 2000);
-        }};
-    </script>
-    <style>
-        body {{ display: flex; justify-content: center; align-items: center; height: 100vh; font-size: 3em; font-weight: bold; }}
-    </style>
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>입장 허용</title>
+        <style>
+            body {{
+                margin: 0; padding: 0;
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background-color: #e6f4ea;  /* 연한 초록 배경 */
+                font-family: '맑은 고딕', Malgun Gothic, sans-serif;
+                color: #2a7a2a;  /* 진한 초록색 */
+                user-select: none;
+            }}
+            .icon {{
+                font-size: 6em;
+                margin-bottom: 20px;
+            }}
+            .message {{
+                font-size: 3em;
+                font-weight: 700;
+                text-align: center;
+            }}
+        </style>
+        <script>
+            window.onload = function() {{
+                const audio = document.getElementById("success-audio");
+                audio?.load();
+                setTimeout(() => {{
+                    audio?.play().catch(e => console.log("Autoplay blocked:", e));
+                }}, 100);
+                setTimeout(() => {{
+                    window.open('', '_self');
+                    window.close();
+                }}, 2500);
+            }};
+        </script>
     </head>
     <body>
-        <audio id="success-audio" src="/static/success.mp3" preload="auto" ></audio>
-        <div style="color:green;">{message}</div>
-    </body></html>
+        <audio id="success-audio" src="/static/success.mp3" preload="auto"></audio>
+        <div class="icon">✅</div>
+        <div class="message">{message}</div>
+    </body>
+    </html>
     """)
-
-
-
 
 
 def error_html(message):
     return render_template_string(f"""
-    <html><head><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>
-        window.onload = function() {{
-            const audio = document.getElementById("fail-audio");
-            audio?.load();
-            setTimeout(() => {{
-                audio?.play().catch(e => console.log("Autoplay blocked:", e));
-            }}, 100);
-            setTimeout(() => {{
-                window.open('', '_self');
-                window.close();
-            }}, 3000);
-        }};
-    </script>
-    <style>
-        body {{ display: flex; justify-content: center; align-items: center; height: 100vh; font-size: 3em; font-weight: bold; }}
-    </style>
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>입장 거부</title>
+        <style>
+            body {{
+                margin: 0; padding: 0;
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background-color: #fdecea; /* 연한 빨강 배경 */
+                font-family: '맑은 고딕', Malgun Gothic, sans-serif;
+                color: #a32a2a; /* 진한 빨강색 */
+                user-select: none;
+            }}
+            .icon {{
+                font-size: 6em;
+                margin-bottom: 20px;
+            }}
+            .message {{
+                font-size: 3em;
+                font-weight: 700;
+                text-align: center;
+            }}
+        </style>
+        <script>
+            window.onload = function() {{
+                const audio = document.getElementById("fail-audio");
+                audio?.load();
+                setTimeout(() => {{
+                    audio?.play().catch(e => console.log("Autoplay blocked:", e));
+                }}, 100);
+                setTimeout(() => {{
+                    window.open('', '_self');
+                    window.close();
+                }}, 3000);
+            }};
+        </script>
     </head>
     <body>
-        <audio id="fail-audio" src="/static/fail.mp3" preload="auto" ></audio>
-        <div style="color:green;">{message}</div>
-    </body></html>
+        <audio id="fail-audio" src="/static/fail.mp3" preload="auto"></audio>
+        <div class="icon">❌</div>
+        <div class="message">{message}</div>
+    </body>
+    </html>
     """)
+
 
 
 
